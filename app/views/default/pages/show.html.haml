@@ -1,0 +1,13 @@
+%h1= current_page.title
+
+= content(:text).try(:html_safe)
+
+= image_tag main_app.url_for(content(:image).variant(resize: '500x500'))
+
+%h5= content(:line).try(:html_safe)
+
+%h5 Image collection
+
+%ul
+  - content(:image_collection)&.images&.each do |image|
+    %li= image_tag main_app.url_for(image.variant(resize: '100x100'))
